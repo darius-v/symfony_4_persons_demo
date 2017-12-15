@@ -14,6 +14,7 @@ Run
 this will create database.
 
 Create table:
+
 `php bin/console doctrine:migrations:migrate`
 (choose yes answer).
 

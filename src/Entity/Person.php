@@ -55,9 +55,7 @@ class Person
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
-     * @Assert\Date(
-     *     format: Y-m-d
-     * )
+     * @Assert\Date()
      */
     private $dateOfBirth;
 
