@@ -6,3 +6,7 @@ postPerson:
     path: /person
     controller: App\Controller\PersonController::postPerson
     methods: [POST]
+
+list:
+    path: /list
+    controller: App\Controller\PersonController::list

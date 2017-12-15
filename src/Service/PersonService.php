@@ -28,4 +28,9 @@ class PersonService
 
         $this->personRepository->save($person);
     }
+
+    public function list(): array
+    {
+        return [];
+    }
 }

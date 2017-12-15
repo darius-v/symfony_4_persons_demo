@@ -19,12 +19,12 @@ class PersonController extends Controller
         $this->personService = $personService;
     }
 
-    public function form()
+    public function form(): Response
     {
         return $this->render('persons/form.html.twig');
     }
 
-    public function postPerson(Request $request)
+    public function postPerson(Request $request): Response
     {
         $person = new Person();
         $person->setFullName($request->get('full-name'));
@@ -39,5 +39,12 @@ class PersonController extends Controller
         }
 
         return $this->redirectToRoute('form');
+    }
+
+    public function list(): Response
+    {
+        $persons = $this->personService->list();
+
+        return $this->render('persons/list.html.twig', $persons);
     }
 }
