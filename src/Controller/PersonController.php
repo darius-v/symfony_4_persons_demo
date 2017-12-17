@@ -24,17 +24,14 @@ class PersonController extends Controller
     public function person(Request $request): Response
     {
         $person = new Person();
-        $form = $this->createForm(PersonType::class, $person, array(
+        $form = $this->createForm(PersonType::class, $person, [
             'method' => 'POST',
-        ));
+        ]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $person->getFileName();
 
-            $this->personService->save($person, $this->getParameter('uploads_directory'), $file);
+            $this->personService->save($person, $this->getParameter('uploads_directory'));
 
             return $this->redirectToRoute('person');
         }
@@ -43,6 +40,17 @@ class PersonController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
+    // this way there is problem when form invalid - we need $form object and render view
+//    public function save(Request $request)
+//    {
+//        $this->personService->save(
+//            $this->getParameter('uploads_directory'),
+//            $request
+//        );
+//
+//        return $this->redirectToRoute('person');
+//    }
 
     public function list(): Response
     {

@@ -1,11 +1,11 @@
 person:
     path: /
     controller: App\Controller\PersonController::person
-    methods: [GET, POST]
+    methods: [GET,POST]
 
-#postPerson:
-#    path: /person
-#    controller: App\Controller\PersonController::postPerson
+#savePerson:
+#    path: /
+#    controller: App\Controller\PersonController::save
 #    methods: [POST]
 
 list:
