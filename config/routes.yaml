@@ -15,3 +15,7 @@ list:
 uploadTest:
     path: /upload
     controller: App\Controller\ProductController::new
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
