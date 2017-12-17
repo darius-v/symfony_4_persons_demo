@@ -1,5 +1,6 @@
+console.log('test'); // does not execute
 $( document ).ready(function() {
-    $('#date-of-birth').datetimepicker({
+    $('#person_dateOfBirth').datetimepicker({
         format: 'YYYY-MM-DD'
     });
 });

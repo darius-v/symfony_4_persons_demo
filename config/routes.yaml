@@ -1,12 +1,17 @@
-form:
+person:
     path: /
-    controller: App\Controller\PersonController::form
+    controller: App\Controller\PersonController::person
+    methods: [GET, POST]
 
-postPerson:
-    path: /person
-    controller: App\Controller\PersonController::postPerson
-    methods: [POST]
+#postPerson:
+#    path: /person
+#    controller: App\Controller\PersonController::postPerson
+#    methods: [POST]
 
 list:
     path: /list
     controller: App\Controller\PersonController::list
+
+uploadTest:
+    path: /upload
+    controller: App\Controller\ProductController::new

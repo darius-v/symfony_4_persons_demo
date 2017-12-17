@@ -11,34 +11,12 @@
 
     <div class="row">
         <div class="col-md-6">
-            <form action="{{ app.request.getSchemeAndHttpHost() }}/index.php/person" method="post">
-                <div class="form-group">
-                    <label for="full-name">Full name</label>
-                    <input type="text" class="form-control" id="full-name" placeholder="Full name" name="full-name">
-                </div>
-                <div class="form-group">
-                    <label for="phone-number">Phone number</label>
-                    <input type="text" class="form-control" id="phone-number" placeholder="Phone number" name="phone-number">
-                </div>
-                <div class="form-group">
-                    <label for="email-address">Email address</label>
-                    <input type="email" class="form-control" id="email-address" placeholder="Email address"
-                           name="email-address">
-                </div>
-                <div class="form-group">
-                    <label for="date-of-birth">Date of birth</label>
-                    <input type="text" class="form-control" id="date-of-birth" placeholder="Date of birth"
-                           name="date-of-birth">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div style="position: relative">
-                    <input type="file" id="exampleInputFile">
-                    <p class="help-block">Example block-level help text here.</p>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+
+            {# templates/default/new.html.twig #}
+            {% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+            {{ form(form) }}
+
         </div>
     </div>
 {% endblock %}
@@ -49,4 +27,12 @@
             src="{{ app.request.getSchemeAndHttpHost() }}/libs/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
     <script src="{{ app.request.getSchemeAndHttpHost() }}/js/create_person.js" ></script>
+    {# todo - above javascript is not executed for some reason #}
+    <script>
+        $( document ).ready(function() {
+            $('#person_dateOfBirth').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+        });
+    </script>
 {% endblock %}
