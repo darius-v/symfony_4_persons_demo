@@ -3,12 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Person;
-use App\ExceptionToUser\GeneralException;
 use App\Form\PersonType;
 use App\Service\PersonService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -56,6 +53,20 @@ class PersonController extends Controller
     {
         $persons = $this->personService->list();
 
-        return $this->render('persons/list.html.twig', $persons);
+        return $this->render('persons/list.html.twig', ['persons' => $persons]);
+    }
+
+    public function details(int $id): Response
+    {
+        $person = $this->personService->findById($id);
+
+        return $this->render('persons/details.html.twig', ['person' => $person]);
+    }
+
+    public function fileDownload(string $fileName): Response
+    {
+        $filePath = $this->getParameter('uploads_directory') . '/' . $fileName;
+
+        return $this->file($filePath);
     }
 }

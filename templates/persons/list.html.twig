@@ -6,12 +6,23 @@
 
     <table class="table">
         <tr>
+            <th>Details link</th>
             <th>Full name</th>
             <th>Phone number</th>
             <th>Email address</th>
             <th>Date of birth</th>
             <th>Uploaded file name</th>
         </tr>
+        {% for person in persons %}
+            <tr>
+                <td><a href="{{ app.request.getSchemeAndHttpHost() }}/person/{{ person.id }}">Details</a></td>
+                <td>{{ person.fullName }}</td>
+                <td>{{ person.phoneNumber }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.dateOfBirth }}</td>
+                <td>{{ person.fileName }}</td>
+            </tr>
+        {% endfor %}
     </table>
 
 {% endblock %}

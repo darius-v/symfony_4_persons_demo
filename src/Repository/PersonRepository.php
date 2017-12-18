@@ -20,6 +20,14 @@ class PersonRepository extends ServiceEntityRepository
         $em->flush();
     }
 
+    /**
+     * @param int $id
+     * @return Person|object
+     */
+    public function findById(int $id): Person
+    {
+        return $this->findOneBy(['id' => $id]);
+    }
 
     /*
     public function findBySomething($value)

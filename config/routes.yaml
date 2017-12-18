@@ -12,10 +12,20 @@ list:
     path: /list
     controller: App\Controller\PersonController::list
 
-uploadTest:
-    path: /upload
-    controller: App\Controller\ProductController::new
+details:
+    path: /person/{id}
+    controller: App\Controller\PersonController::details
+    requirements:
+        page: '\d+'
+
+fileDownload:
+    path: /person-file/{fileName}
+    controller:  App\Controller\PersonController::fileDownload
 
 login:
     path: /login
     controller: App\Controller\SecurityController::login
+
+logout:
+    path: /logout # no need controller method - logs out automatically
+

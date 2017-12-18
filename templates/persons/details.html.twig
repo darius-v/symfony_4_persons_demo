@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Person details{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tr>
+            <th>Full name</th>
+            <td>{{ person.fullName }}</td>
+        </tr>
+        <tr>
+            <th>Phone number</th>
+            <td>{{ person.phoneNumber }}</td>
+        </tr>
+        <tr>
+            <th>Date of birth</th>
+            <td>{{ person.dateOfBirth }}</td>
+        </tr>
+        <tr>
+            <th>File download</th>
+            <td>
+                <a href="{{ app.request.getSchemeAndHttpHost() }}/person-file/{{ person.fileName }}">{{ person.fileName }}</a>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}
+

@@ -14,7 +14,7 @@ class PersonService
     private $personRepository;
 //    private $formFactory;
 
-    public function __construct(PersonRepository $personRepository/*, FormFactoryInterface $formFactory*/)
+    public function __construct(PersonRepository $personRepository, string $uploadsDirectory)
     {
         $this->personRepository = $personRepository;
         //$this->formFactory = $formFactory;
@@ -64,6 +64,11 @@ class PersonService
 
     public function list(): array
     {
-        return [];
+        return $this->personRepository->findAll();
+    }
+
+    public function findById(int $id): Person
+    {
+        return $this->personRepository->findById($id);
     }
 }
