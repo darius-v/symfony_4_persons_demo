@@ -20,7 +20,7 @@
         <tr>
             <th>File download</th>
             <td>
-                <a href="{{ app.request.getSchemeAndHttpHost() }}/person-file/{{ person.fileName }}">{{ person.fileName }}</a>
+                <a href="{{ path('fileDownload', {'fileName': person.fileName}) }}">{{ person.fileName }}</a>
             </td>
         </tr>
     </table>

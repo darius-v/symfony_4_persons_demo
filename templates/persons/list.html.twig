@@ -15,7 +15,7 @@
         </tr>
         {% for person in persons %}
             <tr>
-                <td><a href="{{ app.request.getSchemeAndHttpHost() }}/person/{{ person.id }}">Details</a></td>
+                <td><a href="{{ path('details', {'id': person.id} ) }}">Details</a></td>
                 <td>{{ person.fullName }}</td>
                 <td>{{ person.phoneNumber }}</td>
                 <td>{{ person.email }}</td>

@@ -1,12 +1,7 @@
-person:
+personForm:
     path: /
     controller: App\Controller\PersonController::person
     methods: [GET,POST]
-
-#savePerson:
-#    path: /
-#    controller: App\Controller\PersonController::save
-#    methods: [POST]
 
 list:
     path: /list
