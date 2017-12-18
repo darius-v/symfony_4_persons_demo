@@ -42,3 +42,9 @@ Configure web server, example for apache:
 
 More web server configuration examples here:
 http://symfony.com/doc/current/setup/web_server_configuration.html
+
+# Login 
+To view list and details about person, you need to be logged in as admin.
+Use these hardcoded credentials: admin/kitten
+
+(Password in plaintext is stored in security.yml, in real application it should be hashed).
