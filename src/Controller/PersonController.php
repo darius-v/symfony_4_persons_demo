@@ -27,27 +27,15 @@ class PersonController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->personService->save($person);
 
-            $this->personService->save($person, $this->getParameter('uploads_directory'));
-
-            return $this->redirectToRoute('person');
+            return $this->redirectToRoute('personForm');
         }
 
         return $this->render('persons/form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-
-    // this way there is problem when form invalid - we need $form object and render view
-//    public function save(Request $request)
-//    {
-//        $this->personService->save(
-//            $this->getParameter('uploads_directory'),
-//            $request
-//        );
-//
-//        return $this->redirectToRoute('person');
-//    }
 
     public function list(): Response
     {
@@ -65,7 +53,7 @@ class PersonController extends Controller
 
     public function fileDownload(string $fileName): Response
     {
-        $filePath = $this->getParameter('uploads_directory') . '/' . $fileName;
+        $filePath = $this->personService->getFilePath($fileName);
 
         return $this->file($filePath);
     }

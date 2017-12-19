@@ -3,64 +3,41 @@
 namespace App\Service;
 
 use App\Entity\Person;
-use App\Form\PersonType;
 use App\Repository\PersonRepository;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\Request;
 
 class PersonService
 {
     private $personRepository;
-//    private $formFactory;
+    private $uploadsDirectory;
+    private $phpFunctionsWrapper;
 
-    public function __construct(PersonRepository $personRepository, string $uploadsDirectory)
-    {
+    public function __construct(
+        PersonRepository $personRepository,
+        string $uploadsDirectory,
+        PhpFunctionsWrapper $phpFunctionsWrapper
+    ) {
         $this->personRepository = $personRepository;
-        //$this->formFactory = $formFactory;
+        $this->uploadsDirectory = $uploadsDirectory;
+        $this->phpFunctionsWrapper = $phpFunctionsWrapper;
     }
 
-    public function save(Person $person, string $uploadsDirectory)
+    public function save(Person $person)
     {
+        /** @var UploadedFile $file */
+        // $person fileName field is to UploadedFile object by Symfony form handler.
         $file = $person->getFileName();
 
-        $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+        $fileName = $this->phpFunctionsWrapper
+                ->md5($this->phpFunctionsWrapper->uniqueId()) . '.' . $file->guessExtension();
 
-        // Move the file to the directory where brochures are stored
-        $file->move($uploadsDirectory, $fileName);
+        $file->move($this->uploadsDirectory, $fileName);
 
-        // Update the 'brochure' property to store the PDF file name
-        // instead of its contents
+        // Update the person file property to store the file name instead of its contents
         $person->setFileName($fileName);
 
         $this->personRepository->save($person);
     }
-
-//    public function save(string $uploadsDirectory, Request $request)
-//    {
-//        $person = new Person();
-//
-//        $form = $this->formFactory->create(PersonType::class, $person, [
-//            'method' => 'POST',
-//        ]);
-//
-//        $form->handleRequest($request);
-//
-//        $file = $person->getFileName();
-//
-//        $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-//
-//        // Move the file to the directory where brochures are stored
-//        $file->move($uploadsDirectory, $fileName);
-//
-//        // Update the 'brochure' property to store the PDF file name
-//        // instead of its contents
-//        $person->setFileName($fileName);
-//
-//        $this->personValidator->validate($person);
-//
-//        $this->personRepository->save($person);
-//    }
 
     public function list(): array
     {
@@ -70,5 +47,10 @@ class PersonService
     public function findById(int $id): Person
     {
         return $this->personRepository->findById($id);
+    }
+
+    public function getFilePath(string $fileName): string
+    {
+        return $this->uploadsDirectory . '/' . $fileName;
     }
 }
