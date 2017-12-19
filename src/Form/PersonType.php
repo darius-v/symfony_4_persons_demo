@@ -15,8 +15,8 @@ class PersonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // for required fields - it does not validate that they are required on server side,
-            // need to manually validate.
+            // for required fields - this function does not validate that they are required on server side,
+            // need to manually validate (added validation rules annotations in entity class.
             // https://symfony.com/doc/current/forms.html
             ->add('fullName', TextType::class, ['label' => 'Full name'])
             ->add('phoneNumber', TextType::class, ['label' => 'Phone number', 'required' => false])

@@ -1,4 +1,4 @@
-personForm:
+base:
     path: /
     controller: App\Controller\PersonController::person
     methods: [GET,POST]

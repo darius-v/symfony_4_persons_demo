@@ -13,6 +13,7 @@
         <thead>
             <tr>
                 <th>Details link</th>
+                <th>Details ajax link</th>
                 <th>Full name</th>
                 <th>Phone number</th>
                 <th>Email address</th>
@@ -24,6 +25,7 @@
             {% for person in persons %}
                 <tr>
                     <td><a href="{{ path('details', {'id': person.id} ) }}">Details</a></td>
+                    <td><a href="" class="details-ajax" data-id="{{ person.id }}">Details ajax</a></td>
                     <td>{{ person.fullName }}</td>
                     <td>{{ person.phoneNumber }}</td>
                     <td>{{ person.email }}</td>
@@ -33,6 +35,26 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <div id="details-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Details</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Full name is <span id="modal-full-name"></span></p>
+                    <p>Phone number is <span id="modal-phone-number"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 {% endblock %}
 

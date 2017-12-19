@@ -29,7 +29,7 @@ class PersonController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->personService->save($person);
 
-            return $this->redirectToRoute('personForm');
+            return $this->redirectToRoute('base');
         }
 
         return $this->render('persons/form.html.twig', [
@@ -44,11 +44,18 @@ class PersonController extends Controller
         return $this->render('persons/list.html.twig', ['persons' => $persons]);
     }
 
-    public function details(int $id): Response
+    public function details(Request $request, int $id): Response
     {
         $person = $this->personService->findById($id);
 
-        return $this->render('persons/details.html.twig', ['person' => $person]);
+        if ($request->isXmlHttpRequest()) {
+            return $this->json([
+                'success' => 1,
+                'data' => $person
+            ]);
+        } else {
+            return $this->render('persons/details.html.twig', ['person' => $person]);
+        }
     }
 
     public function fileDownload(string $fileName): Response

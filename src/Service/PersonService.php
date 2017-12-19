@@ -44,7 +44,7 @@ class PersonService
         return $this->personRepository->findAll();
     }
 
-    public function findById(int $id): Person
+    public function findById(int $id): array
     {
         return $this->personRepository->findById($id);
     }
