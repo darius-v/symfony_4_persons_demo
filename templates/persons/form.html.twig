@@ -27,12 +27,4 @@
             src="{{ app.request.getSchemeAndHttpHost() }}/libs/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
     <script src="{{ app.request.getSchemeAndHttpHost() }}/js/create_person.js" ></script>
-    {# todo - above javascript is not executed for some reason #}
-    <script>
-        $( document ).ready(function() {
-            $('#person_dateOfBirth').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-        });
-    </script>
 {% endblock %}
