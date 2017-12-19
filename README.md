@@ -48,3 +48,13 @@ To view list and details about person, you need to be logged in as admin.
 Use these hardcoded credentials: admin/kitten
 
 (Password in plaintext is stored in security.yml, in real application it should be hashed).
+
+# Running tests:
+
+`vendor\bin\phpunit tests`
+
+# What could be improved
+
+- UploadedFile should not be mocked if following rule "Don't mock what you do not own". That needs to refactor code. 
+But the problem is that symfony form sets the UploadedFile object on person, and we do not influence
+symfony form. Or we should not use it?

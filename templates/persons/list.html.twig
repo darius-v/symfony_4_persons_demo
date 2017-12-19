@@ -2,31 +2,41 @@
 
 {% block title %}List{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
+{% endblock %}
+
+
 {% block body %}
 
     <table class="table">
-        <tr>
-            <th>Details link</th>
-            <th>Full name</th>
-            <th>Phone number</th>
-            <th>Email address</th>
-            <th>Date of birth</th>
-            <th>Uploaded file name</th>
-        </tr>
-        {% for person in persons %}
+        <thead>
             <tr>
-                <td><a href="{{ path('details', {'id': person.id} ) }}">Details</a></td>
-                <td>{{ person.fullName }}</td>
-                <td>{{ person.phoneNumber }}</td>
-                <td>{{ person.email }}</td>
-                <td>{{ person.dateOfBirth }}</td>
-                <td>{{ person.fileName }}</td>
+                <th>Details link</th>
+                <th>Full name</th>
+                <th>Phone number</th>
+                <th>Email address</th>
+                <th>Date of birth</th>
+                <th>Uploaded file name</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for person in persons %}
+                <tr>
+                    <td><a href="{{ path('details', {'id': person.id} ) }}">Details</a></td>
+                    <td>{{ person.fullName }}</td>
+                    <td>{{ person.phoneNumber }}</td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.dateOfBirth }}</td>
+                    <td>{{ person.fileName }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
 {% endblock %}
 
 {% block javascripts %}
-
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
+    <script src="{{ app.request.getSchemeAndHttpHost() }}/js/persons_list.js"></script>
 {% endblock %}
