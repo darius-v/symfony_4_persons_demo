@@ -22,10 +22,10 @@ Configure web server, example for apache:
 
 ```
 <VirtualHost *:80>   
-    DocumentRoot "E:/projektai/php projektai/htdocs/mokomieji/symfony_4_demo/public"
+    DocumentRoot "E:/projektai/php projektai/htdocs/mokomieji/symfony_4_persons_demo/public"
     ServerName symfony-4-demo.com
 	
-   <Directory "E:/projektai/php projektai/htdocs/mokomieji/symfony_4_demo/public">
+   <Directory "E:/projektai/php projektai/htdocs/mokomieji/symfony_4_persons_demo/public">
         AllowOverride None
         Order Allow,Deny
         Allow from All
