@@ -26,7 +26,7 @@ Configure web server, example for apache:
     ServerName symfony-4-demo.com
 	
    <Directory "E:/projektai/php projektai/htdocs/mokomieji/symfony_4_persons_demo/public">
-        AllowOverride None
+        AllowOverride All
         Order Allow,Deny
         Allow from All
 
